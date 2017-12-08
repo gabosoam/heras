@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistema de inventario</title>
+
+    <link href="../inspinia/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../inspinia/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../inspinia/css/animate.css" rel="stylesheet">
+    <link href="../inspinia/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../kendo/css/kendo.common-bootstrap.min.css" />
+    <link rel="stylesheet" href="../kendo/css/kendo.bootstrap.min.css" />
+    <link rel="stylesheet" href="../kendo/css/kendo.bootstrap.mobile.min.css" />
+
+
+</head>
+
+<body class="" style="font-size: 150%">
+
+    <div id="wrapper">
+
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <span>
+                                <img alt="image" class="img-circle" src="/inspinia/img/user.png" style="max-width: 50px" />
+                            </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    <span class="block m-t-xs">
+                                        <strong class="font-bold">
+                                            <%= user.name%>
+                                        </strong>
+                                    </span>
+                                   
+                                </span>
+                            </a>
+                          
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    </li>
+                    <li class="">
+                            <a href="/bill">
+                                <i class="fa fa-arrow-left"></i>
+                                <span class="nav-label">VENTAS</span>
+                                <span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li class="">
+                                    <a href="/">VENDER</a>
+                                </li>
+                                <li>
+                                    <a href="/vouchers">HISTORIAL</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a href="/bill">
+                                <i class="fa fa-arrow-right"></i>
+                                <span class="nav-label">COMPRAS</span>
+                                <span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li class="">
+                                    <a href="/product/buy">COMPRAR</a>
+                                </li>
+                                <li class="">
+                                    <a href="/bill">HISTORIAL</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li >
+                            <a href="/devolutions">
+                                <i class="fa fa-arrow-right"></i>
+                                <span class="nav-label">DEVOLUCIONES</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="/model">
+                                <i class="fa fa-cube"></i>
+                                <span class="nav-label">PRODUCTOS</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="/provider">
+                                <i class="fa fa-user"></i>
+                                <span class="nav-label">PROVEEDORES</span>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="/bill">
+                                <i class="fa fa-cog"></i>
+                                <span class="nav-label">CONFIGURACIÓN</span>
+                                <span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/brand">MARCAS</a>
+                                </li>
+                                <li class="">
+                                    <a href="/category">CATEGORÍAS</a>
+                                </li>
+                                <li class="">
+                                    <a href="/unit">UNIDADES DE MEDIDA</a>
+                                </li>
+                                <li class="active">
+                                    <a href="/location">UBICACIÓN</a>
+                                </li>
+                            </ul>
+                        </li>
+                </ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+          
+
+            <div class="wrapper wrapper-content">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>UBICACIÓN</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                                                <i class="fa fa-chevron-up"></i>
+                                                            </a>
+
+
+
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+
+                                <div id="grid"></div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+
+
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    Comercial Heras
+                </div>
+                <div>
+                    <strong>Copyright</strong> Comercial Heras &copy; 2017
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Mainly scripts -->
+    <script src="../inspinia/js/jquery-3.1.1.min.js"></script>
+    <script src="../inspinia/js/bootstrap.min.js"></script>
+    <script src="../inspinia/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="../inspinia/js/inspinia.js"></script>
+    <script src="../inspinia/js/plugins/pace/pace.min.js"></script>
+    <script src="../kendo/js/kendo.all.min.js"></script>
+    <script src="../kendo/js/jszip.min.js"></script>
+    <script src="../kendo/js/kendo.messages.es-MX.min.js"></script>
+
+    <script src="../logic/location.js"></script>
+
+
+
+
+</body>
+
+</html>

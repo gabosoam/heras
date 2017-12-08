@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistema de inventario</title>
+
+    <link href="../inspinia/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../inspinia/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../inspinia/css/animate.css" rel="stylesheet">
+    <link href="../inspinia/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../kendo/css/kendo.common-bootstrap.min.css" />
+    <link rel="stylesheet" href="../kendo/css/kendo.bootstrap.min.css" />
+    <link rel="stylesheet" href="../kendo/css/kendo.bootstrap.mobile.min.css" />
+    <link rel="stylesheet" href="../inspinia/css/plugins/sweetalert/sweetalert.css">
+
+
+</head>
+
+<body class="" style="font-size:150%;">
+
+    <div id="wrapper">
+
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <span>
+                                <img alt="image" class="img-circle" src="../inspinia/img/user.png" style="max-width: 50px" />
+                            </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    <span class="block m-t-xs">
+                                        <strong class="font-bold">
+                                            <%= user.name%>
+                                        </strong>
+                                    </span>
+                                    <span class="text-muted text-xs block">Opciones
+                                        <b class="caret"></b>
+                                    </span>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li>
+                                    <a data-toggle="modal" data-target="#myModal">Cambiar contraseña</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    </li>
+                    <li class="active">
+                        <a href="/bill">
+                            <i class="fa fa-arrow-left"></i>
+                            <span class="nav-label">VENTAS</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li class="active">
+                                <a href="/">VENDER</a>
+                            </li>
+                            <li>
+                                <a href="/vouchers">HISTORIAL</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="/bill">
+                            <i class="fa fa-arrow-right"></i>
+                            <span class="nav-label">COMPRAS</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li class="">
+                                <a href="/product/buy">COMPRAR</a>
+                            </li>
+                            <li>
+                                <a href="/bill">HISTORIAL</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/devolutions">
+                            <i class="fa fa-arrow-right"></i>
+                            <span class="nav-label">DEVOLUCIONES</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/model">
+                            <i class="fa fa-cube"></i>
+                            <span class="nav-label">PRODUCTOS</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/provider">
+                            <i class="fa fa-user"></i>
+                            <span class="nav-label">PROVEEDORES</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="/bill">
+                            <i class="fa fa-cog"></i>
+                            <span class="nav-label">CONFIGURACIÓN</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/brand">MARCAS</a>
+                            </li>
+                            <li class="">
+                                <a href="/category">CATEGORÍAS</a>
+                            </li>
+                            <li class="">
+                                <a href="/unit">UNIDADES DE MEDIDA</a>
+                            </li>
+                            <li class="">
+                                <a href="/location">UBICACIÓN</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+
+
+            <div class="wrapper wrapper-content">
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>
+                                    VENTAS</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+
+
+
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="row">
+
+
+                                    <div id="divClient">
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="" id="selectClient">
+                                                <option value="1">Consumidor final</option>
+                                                <option value="2">Consumo interno</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button onclick="saveClient()" class="btn btn-primary">Continuar</button>
+                                        </div>
+                                    </div>
+
+                                    <div id="divSearch" class="hidden">
+                                        <div class="col-md-12">
+                                            <input type="text" id="nameProduct" class="form-control" style="width: 100%">
+                                            <hr>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="hidden" id="idDecimal">
+
+                                        <div class="col-md-2" style="font-size:100%;">
+                                            <label for="">Cant.</label>
+                                            <div class="form-group">
+
+                                                <input type="number" value="1" min="0.1" class="form-control" validationMessage="Nombre" name="description" required id="cantProduct"
+                                                    style="width: 100%">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2" style="font-size:100%;">
+                                            <label for="">U. de medida</label>
+                                            <div class="form-group">
+
+                                                <input type="text" class="form-control" validationMessage="Nombre" name="description" required id="cbxunit" style="width: 100%">
+                                            </div>
+                                        </div>
+
+                                       
+
+                                        <div class="col-md-2" style="font-size:100%;">
+                                            <div class="form-group">
+                                                <label for="">&nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                                                <button onclick="saveDecimal()" type="button" class="btn btn-primary">Guardar</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div id="units" class="row hidden">
+
+                                    <form id="formsave" disabled>
+
+                                        <input type="hidden" required name="code" id="modelProduct" value="">
+                                        <div class="col-md-3" style="font-size:100%;">
+                                            <label for="">U. de medida</label>
+                                            <div class="form-group">
+
+                                                <input type="text" class="form-control" validationMessage="Nombre" name="description" required id="cbxunit2" style="width: 100%">
+                                            </div>
+                                        </div>
+                                      
+
+
+
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="pwd">Código de barras:</label>
+                                                <input type="text" class="form-control" validationMessage="Ingresa el número de serie" name="barcode" required id="barcode"
+                                                    placeholder="Número de serie" style="width: 100%">
+
+                                                <span id="manchego"></span>
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <div class="col-md-1">
+                                            <label for="pwd">&nbsp</label>
+                                            <button id="save" type="button" class="btn btn-primary">Guardar</button>
+
+                                        </div>
+                                    </form>
+
+
+
+
+                                </div>
+
+
+
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+        </div>
+        <div class="footer">
+            <div class="pull-right">
+                Comercial Heras
+            </div>
+            <div>
+                <strong>Copyright</strong> Comercial Heras &copy; 2017
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <button class="btn btn-primary" onclick="print('Etiquetas')">Generar PDF</button>
+                    <center>
+                        <div id="Etiquetas" style="min-width: 180mm; font-family: 'Arial Narrow'; font-size: 10px">
+                            <table id="" class="table  table-bordered" style="width: 75%">
+                                <tbody>
+                                    <tr w3-repeat="etiquetas">
+
+                                        <td style="font-size: 10px">
+                                            <label>Producto:</label> {{description}}
+                                        </td>
+                                        <td style="font-size: 10px">{{code}}
+                                            <br> {{barcode}} </td>
+
+                                        <td style="font-size: 10px">
+                                            <label>Ubicación:</label>
+                                            <br> {{location}}
+                                        </td>
+
+                                        <td style="font-size: 10px">
+                                            <center>
+                                                <label>Cantidad:</label>
+                                                <br> 1
+                                            </center>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
+
+                    </center>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal"></div>
+    <script>
+        var user = '<%= user.id%>';
+    </script>
+
+
+
+    <!-- Mainly scripts -->
+    <script src="../inspinia/js/jquery-3.1.1.min.js"></script>
+    <script src="../inspinia/js/bootstrap.min.js"></script>
+    <script src="../inspinia/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="../inspinia/js/inspinia.js"></script>
+    <script src="../inspinia/js/plugins/pace/pace.min.js"></script>
+    <script src="../kendo/js/kendo.all.min.js"></script>
+    <script src="../kendo/js/jszip.min.js"></script>
+    <script src="../kendo/js/kendo.messages.es-MX.min.js"></script>
+    <script src="../logic/changePassword.js"></script>
+
+    <!-- Jquery Validate -->
+    <script src="js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="../js/w3.js"></script>
+    <script src="../inspinia/js/plugins/sweetalert/sweetalert.min.js"></script>
+
+    <script src="../logic/buy.js"></script>
+    <script src="../js/jquery.PrintArea.js"></script>
+    <script src="../js/pdf/jspdf.min.js"></script>
+    <script src="../js/pdf/html2canvas.min.js"></script>
+    <script src="../js/pdf/html2pdf.js"></script>
+
+
+
+    <script type="text/javascript">
+
+        var user = '<%= user.id%>';
+        function print(elem) {
+            $('#Etiquetas').printArea();
+
+        }
+    </script>
+
+
+
+
+</body>
+
+</html>
+
+<style type="text/css">
+    #rcorners2 {
+        border-radius: 25px;
+        border: 2px solid black;
+        padding: 10px;
+        text-align: center;
+        width: 5.25cm margin: 5px 5px 5px 5px;
+    }
+
+    #rcorners1 {
+        border: 1px solid black;
+        border-style: dashed;
+        padding: 10px
+    }
+
+    #Etiquetas {
+
+        padding: 30px
+    }
+</style>
